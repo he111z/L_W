@@ -16,7 +16,24 @@ while True:
         naf_in_n=True
         if s2[i].isdigit():
             n1=n1+s2[i]
-            if not(s2[i+1].isdigit()):
+            if i==(len(s2)-1):
+                n2=n1
+                if n2[0]=='0':
+                    n2=n2.replace("0", "", 1)
+                j=0
+                a=int(n2)%2
+                b=len(n2)%2
+                if len(n2)>k:
+                    c=True
+                else:
+                    c=False
+                if a==0 and b==1 and c==True:
+                    print(n2)
+                    for l in range(len(n2)):
+                        if not(n2[l] in ans):
+                            ans.append(n2[l])
+                n1=''
+            elif not(s2[i+1].isdigit()):
                 n2=n1
                 if n2[0]=='0':
                     n2=n2.replace("0", "", 1)
