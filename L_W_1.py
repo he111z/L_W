@@ -23,4 +23,7 @@ while True:
 for i in range(len(ans)):
     if ans[i].isdigit():
         ans[i]=ans[i].replace(ans[i], fntw[int(ans[i])], 1)
-print(ans)
+if len(ans)>0:
+    print(ans)
+else:
+    print('Нет чисел, удовлетворяющих условию.')
