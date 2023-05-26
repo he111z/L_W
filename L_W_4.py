@@ -1,7 +1,6 @@
 import copy
 import random
 import numpy as np
-from numpy.linalg import LinAlgError
 import matplotlib.pyplot as plt
 
 def matrix_creating(N):
