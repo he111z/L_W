@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import ttk
 
 def num_out():
-    window = Tk()
+    window = Toplevel(root)
     window.title("Результат")
     window.geometry("400x300+250+300")
     window["bg"] = "#dffaff"
@@ -10,35 +10,47 @@ def num_out():
     n=(num_input.get())
     if n != "":
         if n.isnumeric():
-            subtitle = Label(window, text='Числа, удовлетворяюшие условию:', font=("Times New Roman", 18), background="#81d5f5", pady=5, padx=17)
-            subtitle.pack()
-            n=int(n)
-            ans=[]
-            for i in range(2, n + 1, 2):
-                if int(str(i)[0]) <= 5 and '0' not in str(i):
-                    ans.append(i)
-            numbers = StringVar(window, value=ans)
-            num_list = Listbox(window, listvariable=numbers, background="#a6fbf6", font=("Arial", 16))
-            num_list.pack(side=LEFT,  fill=Y, expand=2, pady=20)
-            scroll = ttk.Scrollbar(window, orient="vertical", command=num_list.yview)
-            scroll.pack(side=RIGHT, fill=Y)
-            num_list["yscrollcommand"]=scroll.set
+            if int(n)<100001:
+                n=int(n)
+                ans=[]
+                for i in range(2, n + 1, 2):
+                    if int(str(i)[0]) <= 5 and '0' not in str(i):
+                        ans.append(i)
+                if len(ans)!=0:
+                    subtitle = Label(window, text='Числа, удовлетворяюшие условию:', font=("Times New Roman", 18), background="#81d5f5", pady=5, padx=17)
+                    subtitle.pack()
+                    numbers = StringVar(window, value=ans)
+                    num_list = Listbox(window, listvariable=numbers, background="#a6fbf6", font=("Arial", 16))
+                    num_list.pack(side=LEFT,  fill=Y, expand=2, pady=20)
+                    scroll = ttk.Scrollbar(window, orient="vertical", command=num_list.yview)
+                    scroll.pack(side=RIGHT, fill=Y)
+                    num_list["yscrollcommand"]=scroll.set
+                else:
+                    window["bg"] = "#81d5f5"
+                    subtitle = Label(window, text='Нет чисел,\nудовлетворяюших\nусловию.', font=("Times New Roman", 24), background="#81d5f5", pady=85, padx=36)
+                    subtitle.pack()
+            else:
+                window.title("ERROR!!!")
+                window["bg"] = "#ff0000"
+                subtitle = Label(window, text='ОШИБКА!\nПревышение\nограничения ввода!', font=("Times New Roman", 24), background="#ff0000", foreground="#ffff00", pady=85, padx=76)
+                subtitle.pack()
         else:
             window.title("ERROR!!!")
             window["bg"] = "#ff0000"
-            subtitle = Label(window, text='ERROR!\nВвод содержит\nне только цифры!', font=("Times New Roman", 24), background="#ff0000", foreground="#ffff00", pady=85, padx=76)
+            subtitle = Label(window, text='ОШИБКА!\nВвод не содержит\nцифр или содержит\nне только цифры!', font=("Times New Roman", 24), background="#ff0000", foreground="#ffff00", pady=85, padx=76)
             subtitle.pack()
     else:
         window.title("ERROR!!!")
         window["bg"] = "#ff0000"
-        subtitle = Label(window, text='ERROR!\nЧисло не введено!', font=("Times New Roman", 24), background="#ff0000", foreground="#ffff00", pady=100, padx=73)
+        subtitle = Label(window, text='ОШИБКА!\nЧисло не введено!', font=("Times New Roman", 24), background="#ff0000", foreground="#ffff00", pady=100, padx=73)
         subtitle.pack()
+    window.grab_set()
 root = Tk()
 root.title("L_W_8")
-root.geometry("700x360+300+150")
+root.geometry("700x444+300+150")
 root["bg"] = "#dffaff"
 root.resizable(width=False, height=False)
-title = Label(text='Вывод всех четных натуральных чисел до n,\nпри условии, что они не содержат нулей, а\nкрайняя левая цифра не превышает 5.', pady=20, padx=38, font=("Times New Roman", 25), background="#81d5f5", foreground="#000000")
+title = Label(text='Вывод всех четных натуральных чисел до n,\nпри условии, что они не содержат нулей, а\nкрайняя левая цифра не превышает 5.\n\n(Число n не должно превышать 100000!)', pady=20, padx=38, font=("Times New Roman", 25), background="#81d5f5", foreground="#000000")
 title.pack()
 input_hint = Label(text='Введите n', font=("Times New Roman", 18), background="#dffaff", padx=446, pady=20)
 input_hint.pack()
