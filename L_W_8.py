@@ -50,7 +50,7 @@ root.title("L_W_8")
 root.geometry("700x444+300+150")
 root["bg"] = "#dffaff"
 root.resizable(width=False, height=False)
-title = Label(text='Вывод всех четных натуральных чисел до n,\nпри условии, что они не содержат нулей, а\nкрайняя левая цифра не превышает 5.\n\n(Число n не должно превышать 100000!)', pady=20, padx=38, font=("Times New Roman", 25), background="#81d5f5", foreground="#000000")
+title = Label(text='Вывод всех четных натуральных чисел до n,\nпри условии, что они не содержат нулей, а\nкрайняя левая цифра не превышает 5.\n\n(Число n не должно превышать 100000)', pady=20, padx=38, font=("Times New Roman", 25), background="#81d5f5", foreground="#000000")
 title.pack()
 input_hint = Label(text='Введите n', font=("Times New Roman", 18), background="#dffaff", padx=446, pady=20)
 input_hint.pack()
